@@ -11,6 +11,8 @@ backend:
 
 media_folder: static/img
 public_folder: /img
+publish_mode: editorial_workflow
+open_authoring: true
 
 collections:
   - name: "blog"
@@ -30,21 +32,44 @@ collections:
 
   - name: "activity"
     label: "Activity"
-    folder: "src/pages/activity"
+    identifier_field: name
+    folder: "content/activities"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
-      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "activity-post"}
+      - {label: "Name", name: "name", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text"}
-      - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
-      - {label: "Featured Image", name: "featuredimage", widget: image}
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Summary", name: "summary", widget: "text"}
+      - {label: "Difficulty", name: "align", widget: "select", options: ["Easy", "Medium", "Hard"]}
+      - {label: "Image", name: "image", widget: image}
+      # - {label: "Cards", name: "cards", widget: "relation", collection: "card", searchFields: ["name"], valueField: "name", mutiple: true}
 
+  - name: "card"
+    label: "Card"
+    identifier_field: name
+    folder: "content/cards"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "card-post"}
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Content", name: "content", widget: "text"}
+      - {label: "Order", name: "order", widget: "number"}
+      - {label: "Gems", name: "gems", widget: "number"}
 
-
+  - name: "track"
+    label: "Track"
+    identifier_field: name
+    folder: "content/tracks"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "track-post"}
+      - {label: "Name", name: "name", widget: "string"}
+  
   - name: "pages"
     label: "Pages"
     files:
