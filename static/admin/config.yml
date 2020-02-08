@@ -2,6 +2,7 @@ backend:
   name: github
   repo: wongband/NetlifyCMS-Test
   branch: master
+  open_authoring: true
   commit_messages:
     create: 'Create {{collection}} “{{slug}}”'
     update: 'Update {{collection}} “{{slug}}”'
@@ -12,7 +13,6 @@ backend:
 media_folder: static/img
 public_folder: /img
 publish_mode: editorial_workflow
-open_authoring: true
 
 collections:
   - name: "blog"
